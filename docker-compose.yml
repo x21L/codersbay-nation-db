@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  app-server:
+    build:
+      context: .
+      dockerfile: Containerfile
+    image: cb_nations:0.1.0
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=codersbayroot
+      - MYSQL_PASSWORD=codersbayuser
+      - MYSQL_USER=cb_user
