@@ -7,6 +7,7 @@ Hier wird beschrieben wie die Datenbank aufgesetzten und betrieben wird. Außerd
     * Die Kommandozeilenversion ist ausreichend. Podman Desktop wird nicht benötigt.
     * [Windows](https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md) Anleitung
     * [MacOS + Linux](https://podman.io/getting-started/installation) Anleitung
+    * Keine Voraussetzung, aber empfohlen wird auch der [Windows Terminal](https://github.com/microsoft/terminal)
    
    
   2) [Python3](https://www.python.org/downloads/), wird vor allem für podman-compose benötigt. Es wird nicht empfohlen die Version aus dem Windows Store zu installiern.
