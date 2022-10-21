@@ -1,0 +1,95 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[default,scale=0.95]{opensans}
+\usepackage[ngerman]{babel}
+% \usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{fullpage}
+
+\title{Datenbanksetup Anleitung}
+\author{Lukas Wais}
+\date{\today}
+\begin{document}
+\maketitle
+
+Hier wird beschrieben wie die Datenbank aufgesetzten und betrieben wird. \\
+Außerdem, werden häufig gestellte Fragen beantwortet.
+
+\section*{Voraussetzungen}
+\begin{enumerate}
+    \item Installation von podman
+          \begin{itemize}
+              \item Die Kommandozeilenversion ist ausreichend. Podman Desktop wird nicht benötigt.
+              \item \href{https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md}{Windows} Anleitung
+              \item \href{https://podman.io/getting-started/installation}{MacOS + Linux} Anleitung
+          \end{itemize}
+    \item \href{https://www.python.org/downloads/}{Python3}, wird vor allem für \mintinline{shell}{podman-compose} benötigt.
+          \begin{itemize}
+              \item Es wird nicht empfohlen die Version aus dem Windows Store zu installieren.
+              \item Für Windows nicht vergessen \textbf{Python zum Pfad hinzuzufügen!} Einfach die Checkbox bei der Installation wählen.
+          \end{itemize}
+    \item \href{https://github.com/containers/podman-compose}{podman-compose}
+          \begin{itemize}
+              \item Die Installation erfolgt mit pip. Darum ist im Terminal folgender Befehl auszuführen: \mintinline{shell}{pip3 install podman-compose}
+          \end{itemize}
+    \item \href{https://git-scm.com/}{Git} zum klonen des Repositories
+    \item  Keine Voraussetzung, aber empfohlen wird auch der \href{https://github.com/microsoft/terminal}{Windows Terminal}
+\end{enumerate}
+
+\newpage
+
+\section*{Installation}
+\begin{enumerate}
+    \item Repository klonen und im Terminal öffnen. Die Ausgabe sollte wie folgt aussehen:
+\begin{minted}[frame=single, fontsize=\small]{shell}
+    Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----          21/10/2022    11:10                Anleitung
+-----          21/10/2022    09:48             79 Containerfile
+-----          21/10/2022    09:48            290 docker-compose.yml
+-----          21/10/2022    09:48         326276 init.sql
+-----          21/10/2022    09:48           1083 LICENSE
+-----          21/10/2022    10:54            221 README.md
+\end{minted}
+
+    \item \mintinline{shell}{podman-compose up -d} auszuführen
+    \item Warten bis das Setup abgeschlossen ist
+\end{enumerate}
+
+\section*{Betrieb}
+\begin{itemize}
+    \item podman starten (notwending nach Computer Neustart)
+    \item[] \mintinline{shell}{podman machine start}
+    \item Zum starten der DB benötigt man den Containernamen. Den findet man mit \mintinline{shell}{podman ps -a} raus.
+\begin{minted}[frame=single, fontsize=\footnotesize]{shell}
+PS C:\Users\lukas> podman ps -a
+CONTAINER ID  ... NAMES
+e1fa7e625099  ... sleepy_meninsky
+4901ccb6c874  ... codersbay-nation-db
+\end{minted}
+
+\item \textbf{Datenbank starten} \mintinline{shell}{podman start codersbay-nation-db} \\
+Der Name kann/wird unterschiedlich sein!
+
+\item Datenbank stoppen \mintinline{shell}{podman start codersbay-nation-db}
+\item podman stoppen \mintinline{shell}{podman machine stop}
+\end{itemize}
+
+\newpage
+
+\section*{FAQ}
+\begin{itemize}
+    \item[$\dagger$] Es kann keine Verbindung zur VM hergestellt werden gibt \mintinline{shell}{podman machine init}  aus, dass es bereits eine Maschine gibt hilft es die VM neu zu installieren.
+\end{itemize}
+\begin{minted}{shell}
+    podman machine rm
+\end{minted}
+
+\begin{itemize}
+    \item[] Anschließend muss sie neu installiert werden, das geschieht mit
+\end{itemize}
+\begin{minted}{shell}
+    podman machine init
+\end{minted}
+\end{document}
