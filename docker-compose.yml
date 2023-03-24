@@ -3,7 +3,7 @@ services:
   app-server:
     build:
       context: .
-      dockerfile: Containerfile
+      dockerfile: Dockerfile
     image: cb_nations:0.1.0
     ports:
       - 3306:3306
